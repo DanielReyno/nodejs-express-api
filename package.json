@@ -1,0 +1,17 @@
+{
+  "name": "pruebas-nodejs",
+  "version": "1.0.0",
+  "description": "creating apis with nodejs and expressjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Daniel Reynoso",
+  "license": "ISC",
+  "devDependencies": {
+    "standard": "^17.1.2"
+  },
+  "eslintConfig": {
+    "extends": "standard"
+  }
+}
