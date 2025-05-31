@@ -1,7 +1,8 @@
 const http = require('node:http')
 const fs = require('node:fs')
+const users  = require('./data/users')
 
-const server = http.createServer((req, res) => {
+const firstModel = (req, res) => {
   console.log('Enviando contenido')
   console.log(req.url)
 
@@ -24,7 +25,54 @@ const server = http.createServer((req, res) => {
 	  }
     })
   }
-})
+}
+
+const refactoredApiEndpoints = (req, res) => {
+  const { method, url } = req;
+  switch (method) {
+    case "GET":
+      switch (url) {
+        case "/":
+          res.setHeader("content-type", "text/plain");
+          res.end("Bienvenido a mi API con node.js");
+          break;
+        case "/users":
+          res.setHeader("content-type", "application/json");
+          res.end(JSON.stringify(users));
+          break;
+
+        default:
+          res.statusCode = 400;
+          res.end("Invalid url: " + url);
+      }
+      break;
+    case "POST":
+      switch (url) {
+        case "/add-user":
+          let body = "";
+          req.on("data", (chunk) => {
+            body += chunk.toString();
+          });
+
+          req.on("end", () => {
+            const result = JSON.parse(body);
+            console.log(result);
+            res.end("post request successfull");
+          });
+          break;
+        default:
+          res.statusCode = 400;
+          res.end("Invalid url: " + url);
+      }
+      break;
+
+    default:
+      res.statusCode = 400;
+      res.end("Invalid http method: " + method);
+  }
+};
+
+const server = http.createServer(refactoredApiEndpoints)
 
 server.listen(1234, () => {
   console.log('Escuchando servidor en el puerto: http://localhost:' + server.address().port)

@@ -18,6 +18,8 @@ logs
 
 # Optional eslint cache
 .eslintcache
+.prettierignore
+prettier.config
 
 # Optional REPL history
 .node_repl_history
