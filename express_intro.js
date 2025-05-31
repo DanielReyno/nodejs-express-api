@@ -2,6 +2,23 @@ const express = require('express')
 const users = require('./data/users')
 const app = express()
 
+///Middleware body parse
+app.use((req, res, Next) => {
+    if(req.method !== 'POST') return Next()
+    if(req.headers['content-type'] !== 'application/json') return Next()
+    
+    let bodyContent = ''
+    req.on('data', (chunk) => {
+        bodyContent += chunk.toString()
+    })
+
+    req.on('end', () => {
+        req.body = JSON.parse(bodyContent)
+        Next()
+    })
+    
+})
+
 app.disable("x-powered-by")
 const port = 1234
 
@@ -17,15 +34,8 @@ app.get('/users', (req, res) => {
 
 ///POST user
 app.post('/add-user', (req, res) => {
-    let body = ''
-    req.on('data', (chunk) => {
-        body += chunk.toString()
-    })
-
-    req.on('end', () => {
-        console.log(JSON.parse(body))
-        res.status(201).end("post request successfull")
-    })
+    console.log(req.body)
+    res.status(201).end("post request success")
 })
 
 ///Handle Unknown routes or methods
