@@ -2,8 +2,8 @@ const express = require('express')
 const users = require('./data/users')
 const app = express()
 
-///Middleware body parse
-app.use((req, res, Next) => {
+///own middleware body handler
+const postMiddlewareHandler = (req, res, Next) => {
     if(req.method !== 'POST') return Next()
     if(req.headers['content-type'] !== 'application/json') return Next()
     
@@ -16,8 +16,10 @@ app.use((req, res, Next) => {
         req.body = JSON.parse(bodyContent)
         Next()
     })
-    
-})
+}
+
+//Using built-in body handler Middleware
+app.use(express.json())
 
 app.disable("x-powered-by")
 const port = 1234
