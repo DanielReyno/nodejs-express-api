@@ -1,0 +1,17 @@
+
+GET http://localhost:1234/ HTTP/1.1
+
+###
+
+GET http://localhost:1234/users HTTP/1.1
+
+###
+
+POST http://localhost:1234/add-user HTTP/1.1
+content-type: application/json
+
+{
+    "name": "new-user",
+    "age": "25",
+    "level": "10"
+}

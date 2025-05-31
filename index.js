@@ -50,6 +50,9 @@ const refactoredApiEndpoints = (req, res) => {
       switch (url) {
         case "/add-user":
           let body = "";
+
+          
+          //event driven handlers
           req.on("data", (chunk) => {
             body += chunk.toString();
           });

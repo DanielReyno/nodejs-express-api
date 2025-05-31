@@ -4,7 +4,8 @@
   "description": "creating apis with nodejs and expressjs",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "dev_express": "nodemon express_intro.js"
   },
   "author": "Daniel Reynoso",
   "license": "ISC",
@@ -12,5 +13,8 @@
     "nodemon": "^3.1.10",
     "prettier": "^3.5.3",
     "standard": "^17.1.2"
+  },
+  "dependencies": {
+    "express": "5.1.0"
   }
 }
