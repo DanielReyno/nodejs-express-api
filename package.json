@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon index.js",
-    "dev_express": "nodemon express_intro.js"
+    "dev_express": "nodemon express_intro.js",
+    "dev_restfull": "nodemon restfull_api.js"
   },
   "author": "Daniel Reynoso",
   "license": "ISC",
@@ -15,6 +16,7 @@
     "standard": "^17.1.2"
   },
   "dependencies": {
-    "express": "5.1.0"
+    "express": "5.1.0",
+    "zod": "^3.25.43"
   }
 }

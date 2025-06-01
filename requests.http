@@ -15,3 +15,26 @@ content-type: application/json
     "age": "25",
     "level": "10"
 }
+
+###
+
+POST http://localhost:1234/users HTTP/1.1
+content-type: application/json
+
+{
+    "id": 10000,
+    "name": "another new user arrived",
+    "age": 40,
+    "level": 40
+}
+
+###
+
+PATCH http://localhost:1234/users/5 HTTP/1.1
+content-type: application/json
+
+{
+    "age": 40
+}
+###
+DELETE http://localhost:1234/users/4 HTTP/1.1
